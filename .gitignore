@@ -84,5 +84,7 @@ db.sqlite3
 
 .idea/
 
+__pycache__/
+
 # version control
 #vcs.xml
