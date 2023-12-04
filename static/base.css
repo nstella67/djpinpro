@@ -1,0 +1,17 @@
+.h_logo {
+    font-family: 'Nanum Brush Script', cursive;
+}
+
+.h_footer_btn {
+    font-size: .6rem;
+}
+
+.h_footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.h_header {
+    text-align: center;
+    margin: 2rem 0;
+}
