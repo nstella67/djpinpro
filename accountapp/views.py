@@ -10,7 +10,7 @@ def hello_world(request):
     # return HttpResponse('Hello world!')
     if request.method == "POST":
 
-        temp = request.POST.get('name')
+        temp = request.POST.get('hello_world_input')
 
         new_hello_world = HelloWorld()
         new_hello_world.text = temp
