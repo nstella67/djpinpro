@@ -5,46 +5,59 @@
 
     <div>
         <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
-{#            <p>#}
-{#                {{ user.date_joined }} 항상 로그인된 pk만 인식됨. target_user 라는 명칭으로 바꿔줌#}
-{#                {{ target_user.date_joined }}#}
-{#            </p>#}
+            {#            <p>#}
+            {#                {{ user.date_joined }} 항상 로그인된 pk만 인식됨. target_user 라는 명칭으로 바꿔줌#}
+            {#                {{ target_user.date_joined }}#}
+            {#            </p>#}
 
-{#            프로필 이미지 #}
-            <img src="{{ target_user.profile.image.url }}" alt="" style="height: 10rem; width: 10rem; border-radius: 15rem; margin-bottom: 2rem;">
 
-            {% if target_user.profile %}
-            <h2 style="font-family: 'NanumSquareB'">
-{#                {{ user.username }}#}
-{#                {{ target_user.username }}#}
-                {{ target_user.profile.nickname }}
-                <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                    edit
-                </a>
-            </h2>
-            {% else %}
-            <a href="{% url 'profileapp:create' %}">
+            {% if target_user.profile %}    {# profile 있으면 #}
+                {#            프로필 이미지 #}
+                <img src="{{ target_user.profile.image.url }}" alt="" style="height: 10rem; width: 10rem; border-radius: 15rem; margin-bottom: 2rem;">
                 <h2 style="font-family: 'NanumSquareB'">
-                    Create Profile
+                    {# {{ user.username }}#}
+                    {# {{ target_user.username }}#}
+                    {{ target_user.profile.nickname }}
+                    {% if target_user == user %}
+                    <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                        edit
+                    </a>
+                    {% endif %}
                 </h2>
-            </a>
+                <h5 style="margin-bottom: 3rem;">
+                    {{ target_user.profile.message }}
+                </h5>
+
+            {% else %}  {# profile 없으면 #}
+
+                {% if target_user == user %}
+                <a href="{% url 'profileapp:create' %}">
+                    <h2 style="font-family: 'NanumSquareB'">
+                        Create Profile
+                    </h2>
+                </a>
+
+                {% else %}
+                <h2>
+                    닉네임 미설정
+                </h2>
+                {% endif %}
+
             {% endif %}
 
-            <h5 style="margin-bottom: 3rem;">
-                {{ target_user.profile.message }}
-            </h5>
 
+            {# 본인이면 #}
             {% if target_user == user %}
-            <a href="{% url 'accountapp:update' pk=user.pk %}">
-                <p>
-                    Change Info
-                </p>
-            </a>
-            <a href="{% url 'accountapp:delete' pk=user.pk %}">
-                <p>
-                    Quit
-                </p>
-            </a>
+                <a href="{% url 'accountapp:update' pk=user.pk %}">
+                    <p>
+                        Change Info
+                    </p>
+                </a>
+                <a href="{% url 'accountapp:delete' pk=user.pk %}">
+                    <p>
+                        Quit
+                    </p>
+                </a>
             {% endif %}
 
         </div>
