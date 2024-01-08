@@ -10,37 +10,37 @@ from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownerthip_required
 from accountapp.forms import AccountUpdateForm
-from accountapp.models import HelloWorld
+# from accountapp.models import HelloWorld
 from articleapp.models import Article
 
 has_ownership = [login_required, account_ownerthip_required]
 
 # Create your views here.
 
-@login_required
-def hello_world(request):
-    # return HttpResponse('Hello world!')
-    # if request.user.is_authenticated: -> @login_required로 decorator를 이용
-    if request.method == "POST":
-
-        temp = request.POST.get('hello_world_input')
-
-        new_hello_world = HelloWorld()
-        new_hello_world.text = temp
-        new_hello_world.save()
-
-        # hello_world_list = HelloWorld.objects.all()
-        # return render(request, 'accountapp/hello_world.html', context={'hello_world_output': new_hello_world})
-        # return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list}) -> 새로고침하면 계속 저장됨
-
-        # accountapp 내부에 있는 hello_wordl로 재접속하라. 새로고침해도 저장되지 않는다.
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))
-    else:
-        hello_world_list = HelloWorld.objects.all()
-        # return render(request, 'accountapp/hello_world.html', context={'text': 'GET METHOD!!!'})
-        return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
-    # else:
-    #     return HttpResponseRedirect(reverse('accountapp:login'))
+# @login_required
+# def hello_world(request):
+#     # return HttpResponse('Hello world!')
+#     # if request.user.is_authenticated: -> @login_required로 decorator를 이용
+#     if request.method == "POST":
+#
+#         temp = request.POST.get('hello_world_input')
+#
+#         new_hello_world = HelloWorld()
+#         new_hello_world.text = temp
+#         new_hello_world.save()
+#
+#         # hello_world_list = HelloWorld.objects.all()
+#         # return render(request, 'accountapp/hello_world.html', context={'hello_world_output': new_hello_world})
+#         # return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list}) -> 새로고침하면 계속 저장됨
+#
+#         # accountapp 내부에 있는 hello_wordl로 재접속하라. 새로고침해도 저장되지 않는다.
+#         return HttpResponseRedirect(reverse('accountapp:hello_world'))
+#     else:
+#         hello_world_list = HelloWorld.objects.all()
+#         # return render(request, 'accountapp/hello_world.html', context={'text': 'GET METHOD!!!'})
+#         return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
+#     # else:
+#     #     return HttpResponseRedirect(reverse('accountapp:login'))
 
 class AccountCreateView(CreateView):
     model = User
