@@ -5,6 +5,8 @@ Django==4.2.7
 django-bootstrap4==23.2
 django-environ==0.11.2
 extends==0.3.0
+gunicorn==21.2.0
+packaging==23.2
 Pillow==10.1.0
 soupsieve==2.5
 sqlparse==0.4.4
